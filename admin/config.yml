@@ -1,0 +1,63 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Homepage"
+        file: "_data/content.json"
+        format: json
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Heading line 1", name: "heading1", widget: "string" }
+              - { label: "Heading line 2 (blue)", name: "heading2", widget: "string" }
+              - { label: "Motto (italic)", name: "motto", widget: "string" }
+              - { label: "Body text", name: "body", widget: "text" }
+              - { label: "Location note", name: "location", widget: "string" }
+
+          - label: "Services"
+            name: "services"
+            widget: "object"
+            fields:
+              - { label: "Section title", name: "title", widget: "string" }
+              - { label: "Section subtitle", name: "subtitle", widget: "text" }
+              - label: "Service cards"
+                name: "cards"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Chip label", name: "chip", widget: "string" }
+
+          - label: "Why Us"
+            name: "why"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+
+          - label: "CTA / Contact"
+            name: "cta"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Body", name: "body", widget: "text" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Location note", name: "location", widget: "string" }
+
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Tagline", name: "tagline", widget: "text" }
+              - { label: "Legal name", name: "legal", widget: "string" }
