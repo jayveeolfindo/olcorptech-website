@@ -1,9 +1,9 @@
 {
   "hero": {
-    "heading1": "Your own engineer.",
-    "heading2": "Inside your business.",
-    "motto": "You run a small business. You have big ambitions.",
-    "body": "Olcorp Technologies works directly inside your business to understand how you operate, identify what can be improved, and build the technology to make it happen.<br><br>From AI and automation to websites, SEO, social media and smart business systems, we don't just recommend solutions. We build them, deploy them and help you run them.",
+    "heading1": "You built the business.",
+    "heading2": "We'll help you multiply what it can do.",
+    "motto": "Show us your business. We'll show you what's possible.",
+    "body": "You don't need a large team to operate like one. Olcorp Tech uses AI, automation and smart technology to help small businesses save time, reduce repetitive work and accomplish more with the team they already have.",
     "location": "Based in Regina, Saskatchewan. Serving businesses province-wide and world-wide."
   },
   "services": {
@@ -37,14 +37,14 @@
     "subtitle": "The Forward Deployed Engineer model was built for companies like Palantir and their largest government clients. We bring the same embedded, hands-on approach to Saskatchewan small businesses."
   },
   "cta": {
-    "heading": "Ready to get your own engineer?",
-    "body": "Book a free 30-minute discovery call. We will learn about your business and tell you exactly where an FDE engagement would create the most value for you.",
+    "heading": "You don't need to come to us with a technology project.",
+    "body": "Come to us with your business. Tell us how it works, what takes too much time, where your team does things manually, and where you think you could be doing more. We will identify where technology can help and build a plan around your operation.",
     "email": "hello@olcorptech.ca",
     "phone": "+13065151868",
-    "location": "7th Floor, 2010 11th Ave, Regina, SK, Canada S4P 0J3"
+    "location": "Based in Regina, Saskatchewan. Serving businesses province-wide and world-wide."
   },
   "footer": {
     "tagline": "Your embedded technology partner for business automation, AI, websites, SEO and social media. Built for Saskatchewan small businesses.",
-    "legal": "Olcorp Technologies Inc. Saskatchewan Corporation No. 102244500."
+    "legal": "Olcorp Technologies Inc. Saskatchewan Corporation No. 102244500. Incorporated September 25, 2026."
   }
 }
