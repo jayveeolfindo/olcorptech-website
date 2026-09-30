@@ -1,0 +1,50 @@
+{
+  "hero": {
+    "heading1": "Your own engineer.",
+    "heading2": "Inside your business.",
+    "motto": "You run a small business. You have big ambitions.",
+    "body": "Olcorp Technologies works directly inside your business to understand how you operate, identify what can be improved, and build the technology to make it happen.<br><br>From AI and automation to websites, SEO, social media and smart business systems, we don't just recommend solutions. We build them, deploy them and help you run them.",
+    "location": "Based in Regina, Saskatchewan. Serving businesses province-wide and world-wide."
+  },
+  "services": {
+    "title": "Four ways we help your business work smarter",
+    "subtitle": "Whether you need a better online presence, smarter automation, AI-powered workflows or connected business systems, we design, build and manage technology around the way your business actually works.",
+    "cards": [
+      {
+        "title": "Business Automation & Smart Systems",
+        "description": "We connect your tools, devices and business systems so they work together automatically. Reduce repetitive manual work, free up staff time and keep your operation running smoothly without constant oversight.",
+        "chip": "Smart Systems"
+      },
+      {
+        "title": "AI & Workflow Automation",
+        "description": "We identify the tasks your team does repeatedly and build AI-powered systems to handle them. From automated customer responses to internal workflow tools, the goal is always the same: save time and improve how your business operates.",
+        "chip": "AI Automation"
+      },
+      {
+        "title": "Websites & SEO",
+        "description": "We build fast, professional websites and make sure the right customers can find you on Google. Better online visibility means more leads, more calls and more customers walking through your door without spending on ads.",
+        "chip": "Search Visibility"
+      },
+      {
+        "title": "Social Media & Digital Growth",
+        "description": "We manage your social media presence so your business stays active and visible where your customers spend their time. Consistent content, genuine engagement and a clear brand voice that builds trust and generates leads.",
+        "chip": "Digital Growth"
+      }
+    ]
+  },
+  "why": {
+    "title": "Enterprise-level engineering. Small business scale.",
+    "subtitle": "The Forward Deployed Engineer model was built for companies like Palantir and their largest government clients. We bring the same embedded, hands-on approach to Saskatchewan small businesses."
+  },
+  "cta": {
+    "heading": "Ready to get your own engineer?",
+    "body": "Book a free 30-minute discovery call. We will learn about your business and tell you exactly where an FDE engagement would create the most value for you.",
+    "email": "hello@olcorptech.ca",
+    "phone": "+13065151868",
+    "location": "Based in Regina, Saskatchewan. Serving businesses province-wide and world-wide."
+  },
+  "footer": {
+    "tagline": "Your embedded technology partner for business automation, AI, websites, SEO and social media. Built for Saskatchewan small businesses.",
+    "legal": "Olcorp Technologies Inc. Saskatchewan Corporation No. 102244500. Incorporated September 25, 2026."
+  }
+}

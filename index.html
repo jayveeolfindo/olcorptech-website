@@ -398,9 +398,9 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-badge">Forward Deployed Engineering for Small Business</div>
-  <h1>Your own engineer.<br><em>Inside your business.</em></h1>
-  <p class="hero-motto">You run a small business. You have big ambitions.</p>
-  <p class="hero-sub">Olcorp Technologies works directly inside your business to understand how you operate, identify what can be improved, and build the technology to make it happen.<br><br>From AI and automation to websites, SEO, social media and smart business systems, we don't just recommend solutions. We build them, deploy them and help you run them.</p>
+  <h1><span data-cms="hero.heading1">Your own engineer.</span><br><em data-cms="hero.heading2">Inside your business.</em></h1>
+  <p class="hero-motto" data-cms="hero.motto">You run a small business. You have big ambitions.</p>
+  <p class="hero-sub" data-cms="hero.body" data-cms-html>Olcorp Technologies works directly inside your business to understand how you operate, identify what can be improved, and build the technology to make it happen.<br><br>From AI and automation to websites, SEO, social media and smart business systems, we don't just recommend solutions. We build them, deploy them and help you run them.</p>
   <div class="hero-actions">
     <a href="#contact" class="btn-primary">Book a Free Consultation</a>
     <a href="#services" class="btn-outline">Explore Our Services</a>
@@ -614,7 +614,7 @@
       <a href="mailto:hello@olcorptech.ca" class="btn-primary">Email Us</a>
       <a href="tel:+13065151868" class="btn-outline">Call +1 (306) 515-1868</a>
     </div>
-    <p class="cta-note">Based in Regina, Saskatchewan. Serving businesses province-wide and world-wide.</p>
+    <p class="cta-note" data-cms="cta.location">Based in Regina, Saskatchewan. Serving businesses province-wide and world-wide.</p>
   </div>
 </section>
 
@@ -629,7 +629,7 @@
           </div>
           <span class="footer-logo-text">Olcorp Technologies</span>
         </div>
-        <p>Your embedded technology partner for business automation, AI, websites, SEO and social media. Built for Saskatchewan small businesses.</p>
+        <p data-cms="footer.tagline">Your embedded technology partner for business automation, AI, websites, SEO and social media. Built for Saskatchewan small businesses.</p>
         <p style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;margin-bottom:6px;">Our AI workflow solutions are built on Claude by Anthropic, one of the world's leading AI systems.</p>
         <p class="footer-inc">Olcorp Technologies Inc. Saskatchewan Corporation No. 102244500. Incorporated September 25, 2026.</p>
       </div>
@@ -678,6 +678,71 @@
     var dd = document.getElementById('navDropdown');
     if (dd) dd.classList.remove('open');
   }
+</script>
+<script>
+  // CMS content hydration — loads /_data/content.json and populates data-cms elements
+  (function() {
+    function getPath(obj, path) {
+      return path.split('.').reduce(function(o, k) { return o && o[k]; }, obj);
+    }
+    fetch('/_data/content.json').then(function(r) { return r.json(); }).then(function(d) {
+      // Simple data-cms fields
+      document.querySelectorAll('[data-cms]').forEach(function(el) {
+        var val = getPath(d, el.getAttribute('data-cms'));
+        if (val === undefined || val === null) return;
+        if (el.hasAttribute('data-cms-html')) el.innerHTML = val;
+        else el.textContent = val;
+      });
+      // Service cards
+      var cards = d.services && d.services.cards;
+      if (cards) {
+        document.querySelectorAll('.service-card').forEach(function(card, i) {
+          if (!cards[i]) return;
+          var h3 = card.querySelector('h3');
+          var p = card.querySelector('p');
+          var chip = card.querySelector('.service-chip');
+          if (h3) h3.textContent = cards[i].title;
+          if (p) p.textContent = cards[i].description;
+          if (chip) chip.textContent = cards[i].chip;
+        });
+      }
+      // Services section headings
+      var svcSection = document.getElementById('services');
+      if (svcSection && d.services) {
+        var title = svcSection.querySelector('.section-title');
+        var sub = svcSection.querySelector('.section-sub');
+        if (title && d.services.title) title.textContent = d.services.title;
+        if (sub && d.services.subtitle) sub.textContent = d.services.subtitle;
+      }
+      // Why Us section
+      var whySection = document.getElementById('why-us');
+      if (whySection && d.why) {
+        var title = whySection.querySelector('.section-title');
+        var sub = whySection.querySelector('.section-sub');
+        if (title && d.why.title) title.textContent = d.why.title;
+        if (sub && d.why.subtitle) sub.textContent = d.why.subtitle;
+      }
+      // CTA section
+      var ctaSection = document.getElementById('contact');
+      if (ctaSection && d.cta) {
+        var title = ctaSection.querySelector('.section-title');
+        var sub = ctaSection.querySelector('.section-sub');
+        var emailLink = ctaSection.querySelector('a[href^="mailto:"]');
+        var phoneLink = ctaSection.querySelector('a[href^="tel:"]');
+        if (title && d.cta.heading) title.textContent = d.cta.heading;
+        if (sub && d.cta.body) sub.textContent = d.cta.body;
+        if (emailLink && d.cta.email) {
+          emailLink.href = 'mailto:' + d.cta.email;
+          emailLink.textContent = 'Email Us';
+        }
+        if (phoneLink && d.cta.phone) {
+          phoneLink.href = 'tel:' + d.cta.phone;
+          var display = d.cta.phone.replace(/^\+1(\d{3})(\d{3})(\d{4})$/, '+1 ($1) $2-$3');
+          phoneLink.textContent = 'Call ' + display;
+        }
+      }
+    }).catch(function() {}); // graceful fallback to static HTML
+  })();
 </script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
