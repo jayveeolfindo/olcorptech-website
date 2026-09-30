@@ -113,7 +113,7 @@
       padding: 0 24px; height: 60px; gap: 16px;
     }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo-mark { width: 32px; height: 32px; flex-shrink: 0; display: flex; align-items: center; }
+    .nav-logo-mark { width: 36px; height: 36px; flex-shrink: 0; display: flex; align-items: center; border-radius: 8px; overflow: hidden; }
     .nav-logo-text { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; color: #fff; letter-spacing: -0.3px; }
     .nav-logo-text span { background: linear-gradient(90deg, #0ea5ff, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .nav-links { display: flex; align-items: center; gap: 4px; }
@@ -287,7 +287,7 @@
     .footer-top { display: flex; gap: 48px; flex-wrap: wrap; margin-bottom: 48px; }
     .footer-brand { flex: 1 1 240px; }
     .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-    .footer-logo-mark { width: 28px; height: 28px; flex-shrink: 0; display: flex; align-items: center; }
+    .footer-logo-mark { width: 32px; height: 32px; flex-shrink: 0; display: flex; align-items: center; border-radius: 7px; overflow: hidden; }
     .footer-logo-text { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: #fff; }
     .footer-brand p { font-size: 13px; line-height: 1.65; max-width: 280px; margin-bottom: 6px; }
     .footer-inc { font-size: 11px; color: rgba(255,255,255,0.25); }
@@ -369,21 +369,7 @@
 <nav>
   <a class="nav-logo" href="/">
     <div class="nav-logo-mark">
-      <svg viewBox="0 0 86 82" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="38">
-        <defs>
-          <linearGradient id="nav-ot-g" x1="0" y1="0" x2="86" y2="82" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#00CFFF"/>
-            <stop offset="55%" stop-color="#0EA5FF"/>
-            <stop offset="100%" stop-color="#8B5CF6"/>
-          </linearGradient>
-        </defs>
-        <!-- O ring -->
-        <circle cx="31" cy="51" r="24" stroke="url(#nav-ot-g)" stroke-width="14" fill="none"/>
-        <!-- T crossbar (wide pill) -->
-        <rect x="16" y="6" width="64" height="20" rx="10" fill="url(#nav-ot-g)"/>
-        <!-- T stem (cuts through right of O ring) -->
-        <rect x="58" y="6" width="22" height="68" rx="11" fill="url(#nav-ot-g)"/>
-      </svg>
+      <img src="/favicon-512.png" alt="Olcorp Tech logo" width="36" height="36">
     </div>
     <span class="nav-logo-text">Olcorp <span>Tech</span></span>
   </a>
@@ -638,18 +624,7 @@
       <div class="footer-brand">
         <div class="footer-logo">
           <div class="footer-logo-mark">
-            <svg viewBox="0 0 86 82" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="34">
-              <defs>
-                <linearGradient id="ft-ot-g" x1="0" y1="0" x2="86" y2="82" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#00CFFF"/>
-                  <stop offset="55%" stop-color="#0EA5FF"/>
-                  <stop offset="100%" stop-color="#8B5CF6"/>
-                </linearGradient>
-              </defs>
-              <circle cx="31" cy="51" r="24" stroke="url(#ft-ot-g)" stroke-width="14" fill="none"/>
-              <rect x="16" y="6" width="64" height="20" rx="10" fill="url(#ft-ot-g)"/>
-              <rect x="58" y="6" width="22" height="68" rx="11" fill="url(#ft-ot-g)"/>
-            </svg>
+            <img src="/favicon-512.png" alt="Olcorp Tech logo" width="32" height="32">
           </div>
           <span class="footer-logo-text">Olcorp Technologies</span>
         </div>
