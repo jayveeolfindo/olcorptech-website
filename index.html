@@ -781,7 +781,7 @@
     <p class="section-sub">Come to us with your business. Tell us how it works, what takes too much time, where your team does things manually, and where you think you could be doing more. We will identify where technology can help and build a plan around your operation.</p>
     <div class="cta-actions">
       <a href="mailto:hello@olcorptech.ca" class="btn-primary">Book Your Free Technology Review</a>
-      <a href="mailto:hello@olcorptech.ca" class="btn-outline">Email Us</a>
+      <a href="tel:+13065151868" class="btn-outline">Call +1 (306) 515-1868</a>
     </div>
     <p class="cta-note" data-cms="cta.location">Based in Regina, Saskatchewan. Serving businesses province-wide and world-wide.</p>
   </div>
@@ -831,7 +831,7 @@
 
 <!-- MOBILE STICKY BAR -->
 <div class="mobile-bar">
-  <a href="mailto:hello@olcorptech.ca" class="mob-call">Email Us</a>
+  <a href="tel:+13065151868" class="mob-call">Call Us</a>
   <a href="#contact" class="mob-book">Free Tech Review</a>
 </div>
 
@@ -897,12 +897,12 @@
         var title = ctaSection.querySelector('.section-title');
         var sub = ctaSection.querySelector('.section-sub');
         var emailLink = ctaSection.querySelector('a[href^="mailto:"]');
-        var phoneLink = null; /* email replaces phone CTA */
+        var phoneLink = ctaSection.querySelector('a[href^="tel:"]');
         if (title && d.cta.heading) title.textContent = d.cta.heading;
         if (sub && d.cta.body) sub.textContent = d.cta.body;
         if (emailLink && d.cta.email) {
           emailLink.href = 'mailto:' + d.cta.email;
-          emailLink.textContent = 'Email Us';
+          /* keep button text as-is (Book Your Free Technology Review) */
         }
         if (phoneLink && d.cta.phone) {
           phoneLink.href = 'tel:' + d.cta.phone;
