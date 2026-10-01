@@ -369,6 +369,90 @@
       .footer-top { gap: 32px; }
     }
 
+
+
+    /* ===== PULSING GLOW ===== */
+    @keyframes pulse-glow {
+      0%   { box-shadow: 0 0 0 0 rgba(37,99,235,.55); }
+      70%  { box-shadow: 0 0 0 10px rgba(37,99,235,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+    }
+    .hero-actions .btn-primary {
+      animation: pulse-glow 2.2s ease-out infinite;
+    }
+    /* Service icon glow ring on hover */
+    .service-card:hover .service-icon {
+      box-shadow: 0 0 0 4px rgba(37,99,235,.18), 0 0 18px rgba(37,99,235,.22);
+    }
+    /* 3D tilt — smooth reset */
+    .service-card {
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    /* ===== TERMINAL WIDGET ===== */
+    .hero-terminal {
+      display: inline-block;
+      background: rgba(0,0,0,.55);
+      border: 1px solid rgba(96,165,250,.22);
+      border-radius: 10px;
+      margin-top: 44px;
+      text-align: left;
+      width: min(460px, 92vw);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(37,99,235,.12);
+    }
+    .ht-header {
+      background: rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(96,165,250,.12);
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ht-dot {
+      width: 11px; height: 11px; border-radius: 50%;
+    }
+    .ht-dot.red    { background: #ff5f57; }
+    .ht-dot.yellow { background: #ffbd2e; }
+    .ht-dot.green  { background: #28c840; }
+    .ht-title {
+      font-size: 11px;
+      color: rgba(255,255,255,.35);
+      margin-left: auto;
+      margin-right: auto;
+      letter-spacing: .03em;
+    }
+    .ht-body {
+      padding: 16px 18px 18px;
+      min-height: 128px;
+    }
+    .ht-line {
+      display: block;
+      line-height: 1.85;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .ht-cmd   { color: #e2e8f0; }
+    .ht-dim   { color: rgba(148,163,184,.65); }
+    .ht-info  { color: #94a3b8; }
+    .ht-hi    { color: #a78bfa; }
+    .ht-ok    { color: #4ade80; }
+    .ht-prompt{ color: #60a5fa; }
+    .ht-cursor{
+      display: inline-block;
+      width: 7px; height: .85em;
+      background: #60a5fa;
+      vertical-align: middle;
+      margin-left: 1px;
+      animation: blink 1s step-end infinite;
+    }
+    @media (max-width: 500px) { .hero-terminal { font-size: 11px; } }
+
     /* ===== ANIMATIONS ===== */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -459,6 +543,16 @@
   <div class="hero-actions">
     <a href="#contact" class="btn-primary">Book Your Free Technology Review</a>
     <a href="#services" class="btn-outline">Explore What We Can Do</a>
+
+  <div class="hero-terminal" aria-hidden="true">
+    <div class="ht-header">
+      <span class="ht-dot red"></span>
+      <span class="ht-dot yellow"></span>
+      <span class="ht-dot green"></span>
+      <span class="ht-title">business-scan.sh</span>
+    </div>
+    <div class="ht-body" id="ht-body"></div>
+  </div>
   </div>
   </div>
 </div>
@@ -919,6 +1013,88 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('[data-aos]').forEach(function(el) {
     obs.observe(el);
+  });
+})();
+</script>
+
+<script>
+(function() {
+  var body = document.getElementById('ht-body');
+  if (!body) return;
+
+  var LINES = [
+    { cls: 'ht-cmd',  pre: '<span class="ht-prompt">$ </span>', text: 'analyze your-business.ops' },
+    { cls: 'ht-dim',  pre: '',                                   text: '→ Scanning daily operations...',         wait: 220 },
+    { cls: 'ht-info', pre: '',                                   text: '→ Found 3 manual bottlenecks',           wait: 600 },
+    { cls: 'ht-info', pre: '',                                   text: '→ Email follow-ups  /  data entry  /  reporting', wait: 180 },
+    { cls: 'ht-hi',   pre: '',                                   text: '→ Automation saves ~18 hours per week',  wait: 340 },
+    { cls: 'ht-info', pre: '',                                   text: '→ Custom tools: 4 opportunities found',  wait: 180 },
+    { cls: 'ht-ok',   pre: '',                                   text: '✓  Your plan is ready. Book a free review.', wait: 500 },
+  ];
+
+  var SPEED = 28;
+
+  function createLine(cls, pre) {
+    var el = document.createElement('span');
+    el.className = 'ht-line ' + cls;
+    if (pre) el.innerHTML = pre;
+    body.appendChild(el);
+    return el;
+  }
+
+  function typeLine(el, text, speed, done) {
+    var cur = document.createElement('span');
+    cur.className = 'ht-cursor';
+    el.appendChild(cur);
+    var i = 0;
+    function tick() {
+      if (i < text.length) {
+        cur.before(document.createTextNode(text[i++]));
+        setTimeout(tick, speed + Math.random() * 14);
+      } else {
+        cur.remove();
+        if (done) done();
+      }
+    }
+    tick();
+  }
+
+  function runTerminal() {
+    body.innerHTML = '';
+    var idx = 0;
+    function next() {
+      if (idx >= LINES.length) {
+        setTimeout(function() { runTerminal(); }, 3200);
+        return;
+      }
+      var L = LINES[idx++];
+      var wait = idx === 1 ? 0 : (L.wait || 220);
+      setTimeout(function() {
+        var el = createLine(L.cls, L.pre);
+        typeLine(el, L.text, SPEED, next);
+      }, wait);
+    }
+    next();
+  }
+
+  setTimeout(runTerminal, 1400);
+})();
+</script>
+
+<script>
+(function() {
+  document.querySelectorAll('.service-card').forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width  - 0.5;
+      var y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = 'perspective(700px) rotateY(' + (x * 12) + 'deg) rotateX(' + (-y * 12) + 'deg) translateY(-3px)';
+      card.style.transition = 'transform .08s ease, box-shadow .08s ease, border-color .2s';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = '';
+      card.style.transition = 'transform .35s ease, box-shadow .2s, border-color .2s';
+    });
   });
 })();
 </script>
