@@ -372,17 +372,28 @@
 
 
     /* ===== PULSING GLOW ===== */
-    @keyframes pulse-glow {
-      0%   { box-shadow: 0 0 0 0 rgba(37,99,235,.55); }
-      70%  { box-shadow: 0 0 0 10px rgba(37,99,235,0); }
-      100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+    @keyframes pulse-ring {
+      0%   { transform: scale(1);   opacity: .65; }
+      100% { transform: scale(1.1); opacity: 0; }
+    }
+    .hero-actions {
+      position: relative;
     }
     .hero-actions .btn-primary {
-      animation: pulse-glow 2.2s ease-out infinite;
+      position: relative;
+    }
+    .hero-actions .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 100px;
+      border: 2px solid rgba(96,165,250,.55);
+      animation: pulse-ring 2s ease-out infinite;
+      pointer-events: none;
     }
     /* Service icon glow ring on hover */
     .service-card:hover .service-icon {
-      box-shadow: 0 0 0 4px rgba(37,99,235,.18), 0 0 18px rgba(37,99,235,.22);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.15), 0 0 16px rgba(37,99,235,.2);
     }
     /* 3D tilt — smooth reset */
     .service-card {
@@ -392,7 +403,9 @@
 
     /* ===== TERMINAL WIDGET ===== */
     .hero-terminal {
-      display: inline-block;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
       background: rgba(0,0,0,.55);
       border: 1px solid rgba(96,165,250,.22);
       border-radius: 10px;
@@ -768,7 +781,7 @@
     <p class="section-sub">Come to us with your business. Tell us how it works, what takes too much time, where your team does things manually, and where you think you could be doing more. We will identify where technology can help and build a plan around your operation.</p>
     <div class="cta-actions">
       <a href="mailto:hello@olcorptech.ca" class="btn-primary">Book Your Free Technology Review</a>
-      <a href="tel:+13065151868" class="btn-outline">Call +1 (306) 515-1868</a>
+      <a href="mailto:hello@olcorptech.ca" class="btn-outline">Email Us</a>
     </div>
     <p class="cta-note" data-cms="cta.location">Based in Regina, Saskatchewan. Serving businesses province-wide and world-wide.</p>
   </div>
@@ -818,7 +831,7 @@
 
 <!-- MOBILE STICKY BAR -->
 <div class="mobile-bar">
-  <a href="tel:+13065151868" class="mob-call">Call Us</a>
+  <a href="mailto:hello@olcorptech.ca" class="mob-call">Email Us</a>
   <a href="#contact" class="mob-book">Free Tech Review</a>
 </div>
 
@@ -884,7 +897,7 @@
         var title = ctaSection.querySelector('.section-title');
         var sub = ctaSection.querySelector('.section-sub');
         var emailLink = ctaSection.querySelector('a[href^="mailto:"]');
-        var phoneLink = ctaSection.querySelector('a[href^="tel:"]');
+        var phoneLink = null; /* email replaces phone CTA */
         if (title && d.cta.heading) title.textContent = d.cta.heading;
         if (sub && d.cta.body) sub.textContent = d.cta.body;
         if (emailLink && d.cta.email) {
